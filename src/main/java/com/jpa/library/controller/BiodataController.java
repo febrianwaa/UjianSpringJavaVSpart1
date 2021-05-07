@@ -1,0 +1,71 @@
+package com.jpa.library.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jpa.library.entity.Biodata;
+import com.jpa.library.repository.BiodataRepository;
+
+@RestController
+@RequestMapping("/biodata")
+public class BiodataController {
+	@Autowired
+	BiodataRepository biodataRepo;
+
+	@GetMapping("/")
+	public List <Biodata> getAll(){
+		return biodataRepo.findAll();
+	}
+	
+	@PostMapping("/addBiodata")
+	public String addBiodata (@RequestBody Biodata biodata) {
+		biodataRepo.save(biodata);
+		return "Insert Berhasil";
+	}
+	
+	@DeleteMapping("/deleteBiodata/{id}")
+	public String deleteBiodata (@PathVariable String id) {
+	biodataRepo.deleteById(Long.parseLong(id))	;
+	return "Delete Berhasil";
+	}
+
+	@PutMapping("/updateBiodata/{id}")
+	public String updateBiodata (@PathVariable String id, @RequestBody Biodata biodata) {
+		biodata.setId(Long.parseLong(id));
+		biodataRepo.save(biodata);
+		return "Update Berhasil";
+	}
+	
+//-----------------------------------------------------------------------------------
+	
+	@GetMapping ("/nama/{nama}")
+	public List<Biodata> getAllByNama(@PathVariable String nama){
+		return biodataRepo.findByNama(nama);
+	}
+	
+	@GetMapping ("/email/{email}")
+	public List<Biodata> getAllByEmail(@PathVariable String email){
+		return biodataRepo.findByEmail(email);
+	}
+	
+	@GetMapping ("/phone/{phone}")
+	public List<Biodata> getAllByPhone(@PathVariable int phone){
+		return biodataRepo.findByPhone(phone);
+	}
+	
+	@GetMapping ("/address/{address}")
+	public List<Biodata> getAllByAddress(@PathVariable String address){
+		return biodataRepo.findByAddress(address);
+	}
+	
+}
+
