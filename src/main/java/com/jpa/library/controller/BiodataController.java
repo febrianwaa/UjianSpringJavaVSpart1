@@ -47,24 +47,14 @@ public class BiodataController {
 	
 //-----------------------------------------------------------------------------------
 	
-	@GetMapping ("/nama/{nama}")
-	public List<Biodata> getAllByNama(@PathVariable String nama){
-		return biodataRepo.findByNama(nama);
+	@GetMapping("/searchby/{type}/{value}")
+	public List<Biodata> getSearchBy(@PathVariable("type")String type, @PathVariable("value") String value) {
+		return biodataRepo.findBySearchBy(type, value);
 	}
 	
-	@GetMapping ("/email/{email}")
-	public List<Biodata> getAllByEmail(@PathVariable String email){
-		return biodataRepo.findByEmail(email);
-	}
-	
-	@GetMapping ("/phone/{phone}")
-	public List<Biodata> getAllByPhone(@PathVariable int phone){
-		return biodataRepo.findByPhone(phone);
-	}
-	
-	@GetMapping ("/address/{address}")
-	public List<Biodata> getAllByAddress(@PathVariable String address){
-		return biodataRepo.findByAddress(address);
+	@GetMapping("/nama/{value}")
+	public Biodata getByNama(@PathVariable("value") String value) {
+		return biodataRepo.findByNama(value);
 	}
 	
 }

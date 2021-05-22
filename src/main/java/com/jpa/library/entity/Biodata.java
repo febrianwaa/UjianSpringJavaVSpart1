@@ -23,7 +23,7 @@ public class Biodata {
 	private long id;
 	private String nama;
 	private String email;
-	private int phone;
+	private String phone;
 	private String address;
 	
 }
