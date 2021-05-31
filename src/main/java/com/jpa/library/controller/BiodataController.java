@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jpa.library.entity.Biodata;
@@ -55,6 +56,12 @@ public class BiodataController {
 	@GetMapping("/nama/{value}")
 	public Biodata getByNama(@PathVariable("value") String value) {
 		return biodataRepo.findByNama(value);
+	}
+	
+	
+	@GetMapping("/login/")
+	public Biodata loginBiodata(@RequestParam ("nama")String nama,@RequestParam("phone")String phone) {
+	return biodataRepo.loginBiodata(nama, phone);
 	}
 	
 }

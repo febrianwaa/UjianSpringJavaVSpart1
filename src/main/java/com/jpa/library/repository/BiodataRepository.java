@@ -22,4 +22,7 @@ public interface BiodataRepository extends JpaRepository<Biodata, Long>{
 	List<Biodata> findBySearchBy(@Param("type")String type,@Param("value")String value);
 	
 	Biodata findByNama(String nama);
+	
+	@Query(value="SELECT * from biodata where nama=?1 and phone=?2", nativeQuery = true)
+	Biodata loginBiodata(String nama,String phone);
 }

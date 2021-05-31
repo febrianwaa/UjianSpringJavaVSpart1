@@ -30,9 +30,13 @@ public class Laporan {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	private String statusKejadian;
+	private String nama;
+	private String kejadian;
 	private String alamat;
-	private String gambar;
+	private String keterangan;
+	private String status;
+	private String jam;
+	private String image;
 	private String latitude;
 	private String longitude;
 	
